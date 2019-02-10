@@ -6,6 +6,13 @@ services:
 stages:
   - "Minimize"
 
+build:
+  stage: "Minimize"
+  script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+    - docker build --compress --squash -t "$CI_REGISTRY_IMAGE" .
+    - docker push "$CI_REGISTRY_IMAGE"
+  
 docker-slim:
   stage: "Minimize"
   script:
@@ -15,5 +22,3 @@ docker-slim:
     - chmod +x /usr/local/bin/docker-slim-sensor
     - docker pull ubuntu:14.04
     - docker-slim build --tag "$CI_REGISTRY_IMAGE" ubuntu:14.04 
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
-    - docker push "$CI_REGISTRY_IMAGE"
