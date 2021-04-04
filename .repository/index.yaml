@@ -1,0 +1,18 @@
+slug: slim-docker-with-gitlab
+description: Experimenting with using docker-slim to shrink docker images
+project: cardboardci
+namespace: archive
+status: archived
+icon: icon.svg
+license:
+  type: MIT
+  content: Jonathan Beverly <jrbeverly>
+  year: 2019
+topics: |-
+  [
+    "experiment",
+    "docker",
+    "docker-slim",
+    "compression",
+    "minimization"
+  ]
